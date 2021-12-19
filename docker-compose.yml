@@ -1,26 +1,26 @@
 version: "3"
 
-services: 
+services:
   app:
     build:
       context: ./
       dockerfile: app.dockerfile
     working_dir: /home/node/app
-    command: ['npm','run','serve']
-    restart: unless-stopped
+    command: [ 'npm', 'run', 'serve' ]
+    # restart: unless-stopped
     environment:
       - NODE_ENV=development
     volumes:
       - ./app:/home/node/app
-    expose: 
+    expose:
       - "8080"
 
   nginx:
     build:
       context: ./
       dockerfile: web.dockerfile
-    working_dir: /home/node/app 
-    restart: unless-stopped
+    working_dir: /home/node/app
+    # restart: unless-stopped
     volumes:
       - ./app:/home/node/app
     ports:
